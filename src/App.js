@@ -3,7 +3,7 @@ import PageRoutes from './routes/PageRoutes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-orange-100">
       <PageRoutes />
     </div>
   );
