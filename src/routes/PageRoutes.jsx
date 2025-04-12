@@ -7,7 +7,7 @@ function PageRoutes() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing/>} />
+        <Route path="/" element={<Home/>} />
       </Routes>
     </Router>
   )
