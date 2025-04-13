@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-import { PlusCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Input, Checkbox } from 'antd';
 import { submitForm } from '../api/api.js';
 
 function Home() {
   const [showFields, setShowFields] = useState(false);
   const [name, setName] = useState('');
-  const [members, setMembers] = useState(['', '', '', '']);
+  const [members, setMembers] = useState([]);
 
-  const handleMemberChange = (index, value) => {
+  const handleMemberChange = (index, e) => {
+    const value = e.target.value;
     setMembers(prevMembers => {
       const updatedMembers = [...prevMembers];
       updatedMembers[index] = value;
@@ -21,14 +23,28 @@ function Home() {
     }
   };
 
+  const handleCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setShowFields(checked);
+    if (checked && members.length === 0) {
+      // Initialize with one input field
+      setMembers(['']);
+    } else if (!checked) {
+      // Reset members if checkbox is unchecked
+      setMembers([]);
+    }
+  };
+
   const handleSubmit = async () => {
     const category = members.length > 0 ? "Family" : "Single";
-    const formattedMembers = members.filter(m => m.trim() !== "").map(member => ({ name: member }));
+    const formattedMembers = members
+      .filter(m => m.trim() !== "")
+      .map(member => ({ name: member }));
 
     const formData = {
       name,
       category,
-      members: formattedMembers
+      members: formattedMembers,
     };
 
     try {
@@ -36,60 +52,69 @@ function Home() {
       console.log("Form submitted successfully:", response);
       alert("Form submitted successfully!");
     } catch (error) {
+      console.error("Error submitting form:", error);
       alert("Error submitting form. Please try again.");
     }
   };
 
-  console.log("members - ", members);
-
   return (
-    <div className='h-screen flex justify-center items-center'>
-    <div className='bg-white p-4 shadow-lg rounded-lg xl:w-1/2 md:11/12 flex flex-col justify-center gap-y-10'>
-      <div>
-        <h1 className='text-4xl font-bold text-center'>Home Page</h1>
-      </div>
-      <div>
-        <p className='text-center text-2xl'>Welcome to the Home Page</p>
-        <div className='flex flex-col justify-center items-center xl:w-full gap-8'>
-          <div className='mt-10 flex flex-col justify-center w-full sm:w-11/12 xl:w-3/4'>
-            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 text-left ml-1">First name</label>
-            <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 block w-full" placeholder="Enter your Name" onChange={(e) => setName(e.target.value)} required />
-          </div>
-          <div className="flex items-center">
-            <input id="link-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500" onChange={(e) => {
-              setShowFields(e.target.checked);
-              if (!e.target.checked) setMembers([]); // Reset members if unchecked
-            }} />
-            <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-gray-900">Are you with your Family.</label>
-          </div>
-          {showFields && (
-            <div className='w-full sm:w-11/12 xl:w-3/4 flex flex-col gap-4'>
-              {members.map((member, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 block w-full"
-                  placeholder={`Family Member ${index + 1}`}
-                  value={member}
-                  onChange={(e) => handleMemberChange(index, e.target.value)}
-                />
-              ))}
-              {members.length < 4 && (
-                <button type="button" onClick={addMemberField} className="flex items-center gap-2 text-blue-600">
-                  <PlusCircle size={24} />
-                  Add another member
-                </button>
-              )}
+    <div className="h-screen flex justify-center items-center">
+      <div className="bg-white p-4 shadow-lg rounded-lg xl:w-1/2 md:11/12 flex flex-col justify-center gap-y-10">
+        <div>
+          <h1 className="text-4xl font-bold text-center">Home Page</h1>
+        </div>
+        <div>
+          <p className="text-center text-2xl">Welcome to the Home Page</p>
+          <div className="flex flex-col justify-center items-center xl:w-full gap-8">
+            <div className="mt-10 flex flex-col justify-center w-full sm:w-11/12 xl:w-3/4">
+              <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 text-left ml-1">
+                First name
+              </label>
+              <Input 
+                id="first_name"
+                placeholder="Enter your Name" 
+                onChange={(e) => setName(e.target.value)} 
+                required 
+              />
             </div>
-          )}
-          <div className='xl:w-1/2 sm:w-full'>
-            <button type="button" onClick={handleSubmit} className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl font-medium rounded-lg text-xl px-5 py-2.5 text-center w-full">Submit</button>
+            <div className="flex items-center">
+              <Checkbox id="link-checkbox" onChange={handleCheckboxChange} />
+              <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-gray-900">
+                Are you with your Family.
+              </label>
+            </div>
+            {showFields && (
+              <div className="w-full sm:w-11/12 xl:w-3/4 flex flex-col gap-4">
+                {members.map((member, index) => (
+                  <Input
+                    key={index}
+                    placeholder={`Family Member ${index + 1}`}
+                    value={member}
+                    onChange={(e) => handleMemberChange(index, e)}
+                  />
+                ))}
+                {members.length < 4 && (
+                  <Button type="dashed" onClick={addMemberField} icon={<PlusOutlined />}>
+                    Add another member
+                  </Button>
+                )}
+              </div>
+            )}
+            <div className="xl:w-1/2 sm:w-full">
+              <Button 
+                type="primary" 
+                size="large" 
+                onClick={handleSubmit} 
+                className="w-full"
+              >
+                Submit
+              </Button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
-export default Home
+export default Home;
