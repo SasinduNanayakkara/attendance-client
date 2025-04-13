@@ -8,6 +8,7 @@ function PageRoutes() {
     <Router>
       <Routes>
         <Route path="/" element={<Landing/>} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   )

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import { Button } from "antd";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 function Landing() {
   const weddingDate = new Date("2025-10-29T00:00:00");
   const [timeLeft, setTimeLeft] = useState({
@@ -10,6 +12,11 @@ function Landing() {
     mins: 0,
     secs: 0,
   });
+  const navigate = useNavigate();
+
+  const handleRSVP = () => {
+    navigate("/home");
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,24 +69,25 @@ function Landing() {
       >
         <Card bordered={false} className="bg-transparent opacity-1 shadow-none p-2">
           <div className="p-4">
-            <h1 className="text-7xl sm:text-4xl pl- font-extrabold text-center font-wedding">
+            <h1 className="text-7xl sm:text-4xl pl- font-extrabold text-center font-wedding bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
             Sasindu
             </h1>
-            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding">
+            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
               &
             </h1>
-            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding">
+            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
             Sanduni
             </h1>
-            <p className="text-xl font-bold mt-8 text-center font-date">
+            <p className="text-xl font-bold mt-8 text-center font-date text-amber-500">
               Wednesday, October 29, 2025
             </p>
-            <p className="text-xl font-bold mt-2 text-center font-date">
+            <p className="text-xl font-bold mt-2 text-center font-date text-red-400">
               {`${timeLeft.days} Days ${timeLeft.hours} Hrs ${timeLeft.mins} Mins ${timeLeft.secs} Secs`}
             </p>
             <Button
               type="primary"
               className="w-full mt-3 bg-green-600 border-none"
+              onClick={handleRSVP}
             >
               RSVP
             </Button>
