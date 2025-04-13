@@ -30,7 +30,7 @@ function Landing() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center bg-black text-white font-serif">
+    <div className="relative min-h-screen flex items-center justify-center bg-black text-white font-serif">
       {/* Mobile View Background */}
       <div
         className="absolute inset-0 bg-cover bg-center md:hidden"
@@ -55,26 +55,26 @@ function Landing() {
 
       {/* RSVP Card */}
       <motion.div
-        className="relative z-10 mt-6 rounded-2xl shadow-lg w-full max-w-md mx-4 bg-white/30 backdrop-blur-md"
+        className="relative z-10 mt-6 rounded-2xl shadow-lg w-full max-w-md bg-white/20 backdrop-blur-sm"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card bordered={false} className="bg-transparent opacity-1 shadow-none p-4">
+        <Card bordered={false} className="bg-transparent opacity-1 shadow-none p-2">
           <div className="p-4">
-            <h1 className="text-7xl sm:text-4xl font-extrabold text-center">
+            <h1 className="text-7xl sm:text-4xl pl- font-extrabold text-center font-wedding">
             Sasindu
             </h1>
-            <h1 className="text-7xl sm:text-4xl font-extrabold text-center">
+            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding">
               &
             </h1>
-            <h1 className="text-7xl sm:text-4xl font-extrabold text-center">
+            <h1 className="text-7xl sm:text-4xl font-extrabold text-center font-wedding">
             Sanduni
             </h1>
-            <p className="text-xl font-bold mt-8 text-center">
+            <p className="text-xl font-bold mt-8 text-center font-date">
               Wednesday, October 29, 2025
             </p>
-            <p className="text-xl font-bold mt-2 text-center">
+            <p className="text-xl font-bold mt-2 text-center font-date">
               {`${timeLeft.days} Days ${timeLeft.hours} Hrs ${timeLeft.mins} Mins ${timeLeft.secs} Secs`}
             </p>
             <Button
