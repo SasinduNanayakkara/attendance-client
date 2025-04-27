@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Checkbox } from 'antd';
 import { submitForm } from '../api/api.js';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [showFields, setShowFields] = useState(false);
   const [name, setName] = useState('');
   const [members, setMembers] = useState([]);
+  const navigate = useNavigate();
 
   const handleMemberChange = (index, e) => {
     const value = e.target.value;
@@ -49,8 +51,10 @@ function Home() {
 
     try {
       const response = await submitForm(formData);
-      console.log("Form submitted successfully:", response);
-      alert("Form submitted successfully!");
+      console.log("Form submitted successfully:", response?.data?.name);
+      if (response?.data?.name) {
+        navigate("/invitation", { state: { inviteeName: response.data.name } });
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form. Please try again.");
@@ -58,17 +62,17 @@ function Home() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center bg-orange-100">
       <div className="bg-white p-4 shadow-lg rounded-lg xl:w-1/2 md:11/12 flex flex-col justify-center gap-y-10">
         <div>
-          <h1 className="text-4xl font-bold text-center">Home Page</h1>
+          <h1 className="text-6xl font-bold text-center font-wedding">Sasindu & Sanduni</h1>
         </div>
         <div>
-          <p className="text-center text-2xl">Welcome to the Home Page</p>
+          <p className="text-center text-2xl font-bold">Please confirm your participation</p>
           <div className="flex flex-col justify-center items-center xl:w-full gap-8">
             <div className="mt-10 flex flex-col justify-center w-full sm:w-11/12 xl:w-3/4">
               <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 text-left ml-1">
-                First name
+                Name
               </label>
               <Input 
                 id="first_name"

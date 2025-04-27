@@ -1,6 +1,9 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 
-function Invitation({ inviteeName = "Mr. Nanayakkara and Family" }) {
+function Invitation() {
+  const location = useLocation();
+  const { inviteeName } = location.state || {};
   return (
     <div className="min-h-screen bg-[#fdf6ec] flex items-center justify-center px-4 py-12">
       <div className="max-w-2xl w-full bg-white shadow-xl rounded-2xl p-8 text-center border border-[#f3e7d9]">
