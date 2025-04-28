@@ -53,7 +53,13 @@ function Home() {
       const response = await submitForm(formData);
       console.log("Form submitted successfully:", response?.data?.name);
       if (response?.data?.name) {
-        navigate("/invitation", { state: { inviteeName: response.data.name } });
+        if (response?.data?.category === "Family") {
+          navigate("/invitation", { state: { inviteeName: response.data.name + " & Family"  } });
+        } else if (response?.data?.category === "Single") {
+          navigate("/invitation", { state: { inviteeName: response.data.name } });
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
