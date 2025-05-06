@@ -1,55 +1,79 @@
-import React, { useRef } from 'react'
-import { useLocation } from 'react-router-dom';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import { DownloadOutlined } from '@ant-design/icons';
+import React, { useRef } from "react";
+import { useLocation } from "react-router-dom";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { DownloadOutlined } from "@ant-design/icons";
+import invitationBg from "../images/invitation.png";
 
 function Invitation() {
   const location = useLocation();
   const { inviteeName } = location.state || {};
 
-  const componentRef = useRef(); 
+  const componentRef = useRef();
 
   const downloadPDF = async () => {
     const element = componentRef.current;
-    const canvas = await html2canvas(element, { scale: 3 });
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
+    const canvas = await html2canvas(element, { scale: 3, useCORS: true, });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
     const imgProps = pdf.getImageProperties(imgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('Sasindu&Sanduni.pdf');
-  }
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("Sasindu&Sanduni.pdf");
+  };
 
   return (
     <div className="min-h-screen bg-[#fdf6ec] flex items-center justify-center px-4 py-12">
-      <div ref={componentRef} className="max-w-2xl w-full bg-white shadow-xl rounded-2xl p-8 text-center border border-[#f3e7d9]">
-        <h1 className="text-2xl md:text-3xl font-serif text-[#a1866f] mb-4">
-          Dear <span className="font-bold">{inviteeName}</span>, You're Cordially Invited to Celebrate Love
+      <div
+        ref={componentRef}
+        className="max-w-2xl w-full shadow-xl rounded-2xl p-8 text-center border border-[#f3e7d9]"
+        style={{
+          backgroundImage: `url(${invitationBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "white", // fallback color
+        }}
+      >
+        <div className="bg-white/70 rounded-lg p-6 shadow-lg">
+        <h1 className="text-2xl md:text-3xl font-serif text-[#a1866f] mb-4  rounded-lg p-2">
+          Dear <span className="font-bold">{inviteeName}</span>, You're
+          Cordially Invited to Celebrate Love
         </h1>
 
-        <p className="text-xl md:text-2xl font-light text-[#6b4c3b] mb-6">at the wedding of</p>
+        <p className="text-xl md:text-2xl font-light text-[#6b4c3b] mb-6  rounded-lg p-2">
+          at the wedding of
+        </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-[#a1866f] mb-2">Sasindu & Sanduni</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#a1866f] mb-2  rounded-lg p-2">
+          Sasindu & Sanduni
+        </h2>
 
-        <div className="my-6">
+        <div className="my-6  rounded-lg p-2">
           <p className="text-[#6b4c3b] text-lg">On</p>
-          <p className="text-2xl font-semibold text-[#a1866f]">29th October 2025</p>
+          <p className="text-2xl font-semibold text-[#a1866f]">
+            29th October 2025
+          </p>
         </div>
 
-        <div className="my-6">
+        <div className="my-6  rounded-lg p-2">
           <p className="text-[#6b4c3b] text-lg">At</p>
-          <p className="text-xl font-medium text-[#a1866f]">Golden Rose Hotel, Boralesgamuwa</p>
+          <p className="text-xl font-medium text-[#a1866f]">
+            Golden Rose Hotel, Boralesgamuwa
+          </p>
         </div>
 
-        <div className="my-10">
-          <p className="text-[#6b4c3b] text-sm">Kindly RSVP via the link provided in our website 💌</p>
+        <div className="my-10  rounded-lg p-2">
+          <p className="text-[#6b4c3b] text-sm">
+            Kindly RSVP via the link provided in our website 💌
+          </p>
         </div>
 
-        <div className="border-t border-[#f3e7d9] pt-6 text-sm text-[#a1866f]">
+        <div className="border-t border-[#f3e7d9] pt-6 text-sm text-[#a1866f]  rounded-lg p-2">
           <p>We can't wait to celebrate with you!</p>
+        </div>
         </div>
       </div>
 
@@ -61,7 +85,7 @@ function Invitation() {
         Download Invitation
       </button>
     </div>
-  )
+  );
 }
 
-export default Invitation
+export default Invitation;

@@ -29,10 +29,8 @@ function Home() {
     const checked = e.target.checked;
     setShowFields(checked);
     if (checked && members.length === 0) {
-      // Initialize with one input field
       setMembers(['']);
     } else if (!checked) {
-      // Reset members if checkbox is unchecked
       setMembers([]);
     }
   };
@@ -68,10 +66,18 @@ function Home() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-orange-100">
-      <div className="bg-white p-4 shadow-lg rounded-lg xl:w-1/2 md:11/12 flex flex-col justify-center gap-y-10">
+    <div
+      className="h-screen flex justify-center items-center"
+      style={{
+        backgroundImage: `url('https://png.pngtree.com/background/20250316/original/pngtree-pink-and-purple-flowers-with-bokeh-background-perfect-for-wedding-invitations-picture-image_15775464.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div className="bg-[#FDB7EA]/80 p-4 shadow-lg rounded-lg xl:w-1/2 md:w-11/12 flex flex-col justify-center gap-y-10">
         <div>
-          <h1 className="text-6xl font-bold text-center font-wedding">Sasindu & Sanduni</h1>
+          <h1 className="text-6xl font-bold text-center font-wedding text-[#7D1C4A]">Sasindu & Sanduni</h1>
         </div>
         <div>
           <p className="text-center text-2xl font-bold">Please confirm your participation</p>
@@ -115,7 +121,7 @@ function Home() {
                 type="primary" 
                 size="large" 
                 onClick={handleSubmit} 
-                className="w-full"
+                className="w-full bg-[#7D1C4A]"
               >
                 Submit
               </Button>
