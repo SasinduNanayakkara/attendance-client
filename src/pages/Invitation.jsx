@@ -51,28 +51,37 @@ function Invitation() {
           Sasindu & Sanduni
         </h2>
 
-        <div className="my-6  rounded-lg p-2">
+        <div className="my-4  rounded-lg p-2">
           <p className="text-[#6b4c3b] text-lg">On</p>
           <p className="text-2xl font-semibold text-[#a1866f]">
             29th October 2025
           </p>
         </div>
 
-        <div className="my-6  rounded-lg p-2">
+        <div className="my-4  rounded-lg p-2">
           <p className="text-[#6b4c3b] text-lg">At</p>
-          <p className="text-xl font-medium text-[#a1866f]">
+          <p className="text-2xl text-[#a1866f] font-bold">
             Golden Rose Hotel, Boralesgamuwa
           </p>
         </div>
 
-        <div className="my-10  rounded-lg p-2">
-          <p className="text-[#6b4c3b] text-sm">
-            Kindly RSVP via the link provided in our website 💌
+        <div className="mt-10  rounded-lg p-2">
+          <p className="text-[#6b4c3b] text-md">
+            We appreciate your presence by 9.00 AM
           </p>
         </div>
 
-        <div className="border-t border-[#f3e7d9] pt-6 text-sm text-[#a1866f]  rounded-lg p-2">
-          <p>We can't wait to celebrate with you!</p>
+        <div className="my-2  rounded-lg p-2">
+          <p className="text-[#6b4c3b] text-md">
+            (Poruwa Ceremony at 09.17 AM)
+          </p>
+        </div>
+
+        <div className="border-t border-[#f3e7d9] pt-3 text-md text-[#a1866f] font-bold rounded-lg p-2">
+          <p>RSVP</p>
+        </div>
+        <div className="border-t border-[#f3e7d9] pt-3 text-md text-[#a1866f] font-bold rounded-lg p-2">
+          <p>Sasindu - 0784392088   | Sanduni - 0704858363</p>
         </div>
         </div>
       </div>
