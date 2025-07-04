@@ -12,8 +12,19 @@ function Invitation() {
   const componentRef = useRef();
 
   const downloadPDF = async () => {
-    const element = componentRef.current;
-    const canvas = await html2canvas(element, { scale: 3, useCORS: true, });
+    const original = componentRef.current;
+
+    const clone = original.cloneNode(true);
+    clone.style.width = "800px"; // typical desktop width
+    clone.style.padding = "40px";
+    clone.style.backgroundColor = "white";
+    clone.style.position = "absolute";
+    clone.style.top = "-9999px"; // hide from screen
+    clone.style.left = "-9999px";
+
+    document.body.appendChild(clone);
+    
+    const canvas = await html2canvas(clone, { scale: 3, useCORS: true, });
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
     const imgProps = pdf.getImageProperties(imgData);
@@ -22,6 +33,8 @@ function Invitation() {
 
     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
     pdf.save("Sasindu&Sanduni.pdf");
+
+    document.body.removeChild(clone);
   };
 
   return (
