@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { DownloadOutlined } from "@ant-design/icons";
-import invitationBg from "../images/invitation.png";
+import invitationBg from "../images/couple.jpg";
 
 function Invitation() {
   const location = useLocation();
@@ -51,49 +51,49 @@ function Invitation() {
         }}
       >
         <div className="bg-white/70 rounded-lg p-6 shadow-lg">
-        <h1 className="text-2xl md:text-3xl font-serif text-[#a1866f] mb-4  rounded-lg p-2">
+        <h1 className="text-3xl md:text-5xl text-[#C38416] mb-4 font-wedding rounded-lg p-2">
           Dear <span className="font-bold">{inviteeName}</span>, You're
           Cordially Invited to Celebrate Love
         </h1>
 
-        <p className="text-xl md:text-2xl font-light text-[#6b4c3b] mb-6  rounded-lg p-2">
+        <p className="text-xl md:text-3xl font-light text-[#C38416] mb-4 font-wedding rounded-lg p-2">
           at the wedding of
         </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-[#a1866f] mb-2  rounded-lg p-2">
+        <h2 className="text-3xl md:text-6xl font-bold text-[#C38416] font-wedding rounded-lg p-2">
           Sasindu & Sanduni
         </h2>
 
-        <div className="my-4  rounded-lg p-2">
-          <p className="text-[#6b4c3b] text-lg">On</p>
-          <p className="text-2xl font-semibold text-[#a1866f]">
-            29th October 2025
+        <div className="my-1 rounded-lg p-2">
+          <p className="text-[#6b4c3b] font-wedding text-xl font-bold">On</p>
+          <p className="text-4xl font-wedding font-bold text-[#C38416]">
+            Wednesday, 29th October 2025
           </p>
         </div>
 
-        <div className="my-4  rounded-lg p-2">
-          <p className="text-[#6b4c3b] text-lg">At</p>
-          <p className="text-2xl text-[#a1866f] font-bold">
+        <div className="my-1  rounded-lg p-2">
+          <p className="font-wedding  text-xl text-[#976000]">At</p>
+          <p className="text-4xl font-wedding text-[#C38416] font-bold">
             Golden Rose Hotel, Boralesgamuwa
           </p>
         </div>
 
-        <div className="mt-10  rounded-lg p-2">
-          <p className="text-[#6b4c3b] text-md">
-            We appreciate your presence by 9.00 AM
+        <div className="mt-3  rounded-lg p-2">
+          <p className="font-wedding text-[#C38416] text-2xl">
+            We appreciate your presence by 9.00 am
           </p>
         </div>
 
-        <div className="my-2  rounded-lg p-2">
-          <p className="text-[#6b4c3b] text-md">
-            (Poruwa Ceremony at 09.17 AM)
+        <div className="my-1  rounded-lg p-2">
+          <p className="font-wedding text-[#C38416] text-2xl">
+            (Poruwa Ceremony at 09.17 am)
           </p>
         </div>
 
-        <div className="border-t border-[#f3e7d9] pt-3 text-md text-[#a1866f] font-bold rounded-lg p-2">
+        <div className="border-t border-[#f3e7d9] pt-3 text-xl text-[#976000] font-bold font-wedding rounded-lg p-2">
           <p>RSVP</p>
         </div>
-        <div className="border-t border-[#f3e7d9] pt-3 text-md text-[#a1866f] font-bold rounded-lg p-2">
+        <div className="border-t border-[#f3e7d9] pt-3 text-2xl text-[#C38416] font-bold font-wedding rounded-lg p-2">
           <p>Sasindu - 0784392088   | Sanduni - 0704858363</p>
         </div>
         </div>
@@ -101,10 +101,10 @@ function Invitation() {
 
       <button
         onClick={downloadPDF}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex items-center gap-2 bg-[#a1866f] hover:bg-[#8c705a] text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 z-50"
+        className="fixed bottom-5 left-[750px] px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white rounded-full text-lg hover:scale-105 transition z-50"
       >
         <DownloadOutlined className="text-xl" />
-        Download Invitation
+        <span className="font-date"> Download Invitation</span>
       </button>
     </div>
   );

@@ -3,6 +3,9 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Checkbox } from 'antd';
 import { submitForm } from '../api/api.js';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion";
+import bgImage from "../images/bg-1.jpg";
+
 
 function Home() {
   const [showFields, setShowFields] = useState(false);
@@ -69,21 +72,29 @@ function Home() {
     <div
       className="h-screen flex justify-center items-center"
       style={{
-        backgroundImage: `url('https://png.pngtree.com/background/20250316/original/pngtree-pink-and-purple-flowers-with-bokeh-background-perfect-for-wedding-invitations-picture-image_15775464.jpg')`,
+        backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="bg-[#FDB7EA]/80 p-4 shadow-lg rounded-lg xl:w-1/2 md:w-11/12 flex flex-col justify-center gap-y-10">
+      <motion.div
+        className="relative z-10 bg-white/50 backdrop-blur-md rounded-3xl p-10 w-[90%] max-w-2xl text-center shadow-lg"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div>
-          <h1 className="text-6xl font-bold text-center font-wedding text-[#7D1C4A]">Sasindu & Sanduni</h1>
+          <h1 className="text-4xl sm:text-7xl font-bold text-center font-wedding bg-gradient-to-r from-[#4C291E] via-[#FFB22C] to-[#4C291E] text-transparent bg-clip-text">We look forward to your confirmation</h1>
         </div>
         <div>
-          <p className="text-center text-2xl font-bold">Please confirm your participation</p>
+          <div className='px-10'>
+            <p className="text-center font-wedding text-2xl sm:text-4xl mt-6  text-[#976000]">Please confirm your attendance by October 29, 2025, to ensure everything is as we have dreamed.</p>
+            <p className="text-center font-wedding text-3xl sm:text-4xl mt-6 text-[#976000] font-bold">Help us plan the perfect day</p>
+          </div>
           <div className="flex flex-col justify-center items-center xl:w-full gap-8">
             <div className="mt-10 flex flex-col justify-center w-full sm:w-11/12 xl:w-3/4">
-              <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 text-left ml-1">
+              <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-[#976000] text-left ml-1 font-date">
                 Name
               </label>
               <Input 
@@ -95,7 +106,7 @@ function Home() {
             </div>
             <div className="flex items-center">
               <Checkbox id="link-checkbox" onChange={handleCheckboxChange} />
-              <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-gray-900">
+              <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium text-[#976000] font-date">
                 Are you with your Family.
               </label>
             </div>
@@ -110,25 +121,23 @@ function Home() {
                   />
                 ))}
                 {members.length < 4 && (
-                  <Button type="dashed" onClick={addMemberField} icon={<PlusOutlined />}>
+                  <Button type="dashed" className='text-[#976000] font-date' onClick={addMemberField} icon={<PlusOutlined />}>
                     Add another member
                   </Button>
                 )}
               </div>
             )}
             <div className="xl:w-1/2 sm:w-full">
-              <Button 
-                type="primary" 
-                size="large" 
+              <button
                 onClick={handleSubmit} 
-                className="w-full bg-[#7D1C4A]"
+                className="px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white rounded-full text-xl hover:scale-105 font-date transition"
               >
                 Submit
-              </Button>
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

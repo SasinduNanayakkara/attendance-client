@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        wedding: ['Lobster', 'cursive'],
+        wedding: ['Carattere', 'cursive'],
         date: ['Andika', 'cursive'],
       },
     },
